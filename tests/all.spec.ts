@@ -64,3 +64,14 @@ test.describe('TC-6: Карточка товара', () => {
     }
   });
 });
+
+import { test, expect } from '@playwright/test';
+import {
+  banner,
+  header,
+  sorting,
+  product,
+  chat,
+} from '../page-objects/selectors';
+
+ main
