@@ -13,7 +13,7 @@ export const banner = {
 export const header = {
   topMenuLink: (name: string) => `.top-menu__link:has-text("${name}")`,
   phone: '.callback-info__main-num-text',
-  consultBtn: 'a[href="https://taplink.cc/planetexotic"]',
+  consultBtn: '.callback-popup a[href="https://taplink.cc/planetexotic"]',
   social: (name: 'VK' | 'YouTube' | 'Telegram') => {
     const map: Record<string, string> = {
       VK: '.soc-btn_vk',
