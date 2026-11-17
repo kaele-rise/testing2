@@ -1,7 +1,13 @@
 // ================================================================
+// selectors.ts · planetexotic.ru
+// ================================================================
+
+// ================================================================
 // TC-01 · БАННЕР
 // ================================================================
 export const banner = {
+  // TODO: На главной странице скрипт не нашел баннер (возможно, он скрыт или показывается не всем).
+  // Если тесты падают, нужно будет найти актуальный класс.
   root: '#pe-relocation-banner',
   link: '#pe-relocation-banner a',
   text: /МЫ ПЕРЕЕХАЛИ И УЖЕ ОТКРЫТЫ/i,
@@ -12,8 +18,8 @@ export const banner = {
 // ================================================================
 export const header = {
   topMenuLink: (name: string) => `.top-menu__link:has-text("${name}")`,
-  phone: '.callback-info__main-num-text',
-  consultBtn: 'a[href="https://taplink.cc/planetexotic"]',
+  phone: '.callback-info__main-num-text', // Проверено, найдено
+  consultBtn: 'a[href="https://taplink.cc/planetexotic"]', // Проверено, найдено
   social: (name: 'VK' | 'YouTube' | 'Telegram') => {
     const map: Record<string, string> = {
       VK: '.soc-btn_vk',
@@ -28,7 +34,7 @@ export const header = {
 // TC-03 · ПОИСК
 // ================================================================
 export const search = {
-  input: '.site-search__input',
+  input: '.site-search__input', // Проверено, найдено
   suggestions: '.autocomplete-suggestions',
   suggestionItem: '.autocomplete-suggestion',
   emptyState: /ничего не найдено|нет результатов/i,
@@ -38,13 +44,13 @@ export const search = {
 // TC-04 · КОРЗИНА И ИЗБРАННОЕ
 // ================================================================
 export const cart = {
-  counter: '.js-minicart-count',
-  icon: '.site-actions__btn_cart a',
+  counter: '.js-minicart-count', // Проверено, найдено
+  icon: '.site-actions__btn_cart a', // Проверено, найдено
   addBtn: '.btn:has-text("В корзину")',
 };
 
 export const favorites = {
-  counter: '.js-wishlist-count',
+  counter: '.js-wishlist-count', // Проверено, найдено
   heartBtn: '.btn-fav',
   heartActiveClass: /active|selected|in-fav/,
 };
@@ -53,6 +59,8 @@ export const favorites = {
 // TC-05 · СОРТИРОВКА
 // ================================================================
 export const sorting = {
+  // TODO: На сайте может быть кастомный выпадающий список, а не тег <select>.
+  // Если тесты на сортировку падают, нужно будет уточнить класс кнопки.
   select: 'select[name="sort"]',
   priceItem: '.price_main',
   options: {
@@ -66,11 +74,15 @@ export const sorting = {
 // TC-06 · КАРТОЧКА ТОВАРА
 // ================================================================
 export const product = {
-  card: '.js-product-list-item',
+  // Проверено по дампу: карточка имеет класс .item-c или .js-product-list-item
+  card: '.item-c',
+  // Классы ниже стандартные для этого движка и должны работать
   title: '.item-c__title',
   price: '.price_main',
+  // Проверено по дампу: картинка имеет класс .js-item__image
   image: 'img.js-item__image',
   moreBtn: 'a:has-text("Подробнее")',
+  // Проверено по дампу: блок с бейджами (например, "замороженный") имеет класс .item-c__badges
   frozenMarker: '.item-c__badges',
   pageHeading: 'h1.section-title',
 };
@@ -79,11 +91,10 @@ export const product = {
 // TC-07 · ВИДЖЕТ ЧАТА
 // ================================================================
 export const chat = {
-  fab: '.js-fab__btn',
-  telegramLink: 'a[href*="t.me"]',
+  fab: '.js-fab__btn', // Проверено, найдено
+  telegramLink: 'a[href*="t.me"]', // Проверено, найдено
   maxLink: 'a[href*="max.ru"]',
-  callbackBtn: '#call-back-button',
+  callbackBtn: '#call-back-button', // Проверено, найдено
   submitBtn: 'button:has-text("Отправить")',
   consentCheckbox: 'input[type="checkbox"]',
 };
-
