@@ -14,7 +14,6 @@ export class HomePage extends BasePage {
     constructor(page: Page) {
         super(page);
 
-        // ИСПОЛЬЗУЕМ :visible ДЛЯ ПОИСКА
         this.searchInput = page.locator('.site-search__input:visible').first();
         this.searchSuggestions = page.locator('.autocomplete-suggestions:visible').first();
         this.searchSuggestionItem = page.locator('.autocomplete-suggestion:visible').first();

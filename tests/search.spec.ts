@@ -14,7 +14,6 @@ test.describe('TC-03: Поиск (Page Object Model)', () => {
 
     test('1. Успешный поиск через форму', async () => {
         await homePage.performSearch('паук');
-        // Проверяем, что перешли на страницу поиска и карточки есть
         await searchPage.expectResultsFound();
     });
 
@@ -25,7 +24,6 @@ test.describe('TC-03: Поиск (Page Object Model)', () => {
 
     test('3. Поиск несуществующего товара', async () => {
         await homePage.performSearch('zxqwv1234!@#$');
-        // Проверяем, что перешли на страницу поиска и карточек НЕТ (0 штук)
         await searchPage.expectNoResults();
     });
 });
