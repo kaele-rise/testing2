@@ -2,25 +2,32 @@ import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class SearchPage extends BasePage {
-    // Селекторы
     readonly emptyMessage: Locator;
     readonly productCards: Locator;
 
     constructor(page: Page) {
         super(page);
-        // Ищем текст "ничего не найдено" по регулярному выражению
         this.emptyMessage = page.getByText(/ничего не найдено|нет результатов/i).first();
-        // Карточки товаров, которые вы находили ранее
+        // Селектор карточек товаров (мы его находили ранее)
         this.productCards = page.locator('.item-c');
     }
 
-    // Кастомная функция: проверить, что результаты не найдены
+    // Проверка, что результаты НЕ найдены
     async expectNoResults() {
-        await expect(this.emptyMessage).toBeVisible({ timeout: 10000 });
+        // 1. Ждем, что URL изменился на страницу поиска (там обычно есть слово search)
+        await expect(this.page).toHaveURL(/search/, { timeout: 10000 });
+
+        // 2. Главная проверка: карточек товаров на странице должно быть 0
+        await expect(this.productCards).toHaveCount(0, { timeout: 10000 });
     }
 
-    // Кастомная функция: проверить, что результаты есть
+    // Проверка, что результаты найдены
     async expectResultsFound() {
-        await expect(this.productCards.first()).toBeVisible();
+        // Ждем, что URL изменился
+        await expect(this.page).toHaveURL(/search/, { timeout: 10000 });
+
+        // Проверяем, что карточек больше 0
+        const count = await this.productCards.count();
+        expect(count).toBeGreaterThan(0);
     }
 }
