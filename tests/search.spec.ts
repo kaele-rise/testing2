@@ -33,4 +33,15 @@ test.describe('TC-03: Поиск (Page Object Model)', () => {
         // Проверяем, что увидели сообщение "ничего не найдено"
         await searchPage.expectNoResults();
     });
+
+    test('4. Кнопка «Поиск» открывает результаты по введённому запросу', async ({ page }) => {
+        const query = 'паук';
+
+        await homePage.searchByButton(query);
+
+        await expect(page).toHaveURL(url =>
+            url.pathname === '/search/' && url.searchParams.get('query') === query
+        );
+        await searchPage.expectResultsFound();
+    });
 });
